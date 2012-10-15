@@ -33,7 +33,7 @@ app = Flask(__name__.split('.')[0])
 app.config.from_object(__name__)
 #app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/badges.db'
 
 
