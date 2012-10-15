@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+	<script type=text/javascript>
+	$(function() {
+		$( "#sortable1, #sortable2" ).sortable({
+			connectWith: ".connectedSortable", placeholder: 'ui-state-highlight',
+			items: 'li'
+		}).disableSelection();
+	});
+
+	</script>
+	<script type=text/javascript>
+	$("#sortable2").each(function () {
+	    $(this).sortable({
+	        update: function (event, ui) {
+	            $(this).closest("form").trigger("onsubmit");
+	        }
+	    });
+	});
+	</script>
+
+	<h2>Rank your Skills</h2>
+	<div class="demo span-24 last" style="min-height:0px;">
+		<h4>Drag the items from the column on the right to the one on the left. Place your best skills at the top.</h4>
+		<ul id="sortable1" class="connectedSortable">
+			<!--<h3>Drag the items below to the column on the right</h3>-->
+			<li class="ui-state-default"><em>Back-End Programming</em> (ex: JAVA/C++/Objective C)<input id="id_name" name="id_name" type="hidden" value="1" /></li>
+			<li class="ui-state-default"><em>Bayesian/Monte-Carlo Statistics</em> (ex: MCMC, BUGS)<input id="id_name" name="id_name" type="hidden" value="2" /></li>
+			<li class="ui-state-default"><em>Big and Distributed Data</em> (ex: Hadoop, Map/Reduce)<input id="id_name" name="id_name" type="hidden" value="3" /></li>
+			<li class="ui-state-default"><em>Business</em> (ex: management, business development, budgeting)<input id="id_name" name="id_name" type="hidden" value="4" /></li>
+			<li class="ui-state-default"><em>Classical Statistics</em> (ex: general linear model, ANOVA)<input id="id_name" name="id_name" type="hidden" value="5" /></li>
+			<li class="ui-state-default"><em>Data Manipulation</em> (ex: regexes, R, SAS, web scraping)<input id="id_name" name="id_name" type="hidden" value="6" /></li>
+			<li class="ui-state-default"><em>Front-End Programming</em> (ex: JavaScript, HTML, CSS)<input id="id_name" name="id_name" type="hidden" value="7" /></li>
+			<li class="ui-state-default"><em>Graphical Models</em> (ex: social networks, Bayes networks)<input id="id_name" name="id_name" type="hidden" value="8" /></li>
+			<li class="ui-state-default"><em>Machine Learning</em> (ex: decision trees, neural nets, SVM)<input id="id_name" name="id_name" type="hidden" value="9" /></li>
+			<li class="ui-state-default"><em>Math</em> (ex: linear algebra, real analysis, calculus)<input id="id_name" name="id_name" type="hidden" value="10" /></li>
+			<li class="ui-state-default"><em>Optimization</em> (ex: linear, integer, convex, global)<input id="id_name" name="id_name" type="hidden" value="11" /></li>
+			<li class="ui-state-default"><em>Product</em> Development (ex: design, project management)<input id="id_name" name="id_name" type="hidden" value="12" /></li>
+			<li class="ui-state-default"><em>Science</em> (ex: experimental design, technical writing/publishing)<input id="id_name" name="id_name" type="hidden" value="13"/></li>
+			<li class="ui-state-default"><em>Simulation</em> (ex: discrete, agent-based, continuous)<input id="id_name" name="id_name" type="hidden" value="14" /></li>
+			<li class="ui-state-default"><em>Spatial Statistics</em> (ex: geographic covariates, GIS)<input id="id_name" name="id_name" type="hidden" value="15" /></li>
+			<li class="ui-state-default"><em>Stuctured Data</em> (ex: SQL, JSON, XML)<input id="id_name" name="id_name" type="hidden" value="16" /></li>
+			<li class="ui-state-default"><em>Surveys and Marketing</em> (ex: multinomial modeling)<input id="id_name" name="id_name" type="hidden" value="17" /></li>
+			<li class="ui-state-default"><em>Systems Administration</em> (ex: *nix, DBA, cloud tech.)<input id="id_name" name="id_name" type="hidden" value="18" /></li>
+			<li class="ui-state-default"><em>Temporal Statistics</em> (ex: forecasting, time-series analysis)<input id="id_name" name="id_name" type="hidden" value="19"/></li>
+			<li class="ui-state-default"><em>Unstructured Data</em> (ex: noSQL, text mining)<input id="id_name" name="id_name" type="hidden" value="20" /></li>
+			<li class="ui-state-default"><em>Visualization</em> (ex: stats graphics, mapping, web-based viz)<input id="id_name" name="id_name" type="hidden" value="21" /></li>
+		</ul>
+
+		<form action="{{ url_for('q2') }}" method=post>
+
+			<ul id="sortable2" class="connectedSortable" style="border:1px solid green;">
+				<!--<h3>Place your best skill at the top</h3>-->
+				<li class="ui-state-default"><em>Algorithms</em> (ex: computational complexity, CS theory)<input id="id_name" name="id_name" type="hidden" value="0"/></li>
+				<!-- <li class="ui-state-highlight">Top Skill -- keep me on top</li>
+				<li class="ui-state-highlight">Bottom Skill -- keep me on the bottom</li>  -->
+			</ul>
+
+	</div><!-- End demo -->
+	
+		<button type='submit' class="large awesome green">Proceed to the Last Question</button>
+	</form>
+
+{% endblock %}

@@ -1,0 +1,282 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>You're a <strong>{{ selflabel }}</strong> with top skills in <strong>{{ skill }}</strong>!</h2>
+<p>Insert legal disclaimer, For Entertainment Value Only!</p>
+
+<script type=text/javascript src="{{url_for('static', filename='js/radar.js') }}"></script>
+<script type=text/javascript src="{{url_for('static', filename='js/d3.v2.js') }}"></script>
+
+
+<div class="span-10 prepend-1 colborder">
+  <h3 style="text-align:center">T-Chart</h3>
+  <div id="t-shaped"></div>
+</div>
+<div class="span-11  last">
+  <h3 style="text-align:center">Self ID Radar Chart</h2>
+  <div id="selfid"></div>
+</div>
+<div class="span-24 last">
+  <p>{{ blurb }}</p>
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Have some questions about your results? <a href="{{ url_for('faq') }}" class="large awesome blue">FAQ</a></h2>
+</div>
+<div class="span-24 last">
+  <hr/>
+  <h2>Want more information about the survey? <a href="{{ url_for('surveydetails') }}" class="large awesome red">Survey Details</a></h2>
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green">Retake the Quiz!</a></h2>
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Spread the love ...  INSERT TWITTER BUTTONS</h2>
+</div>
+
+
+<script type="text/javascript">
+
+  var colors = ["orange", "green", "blue", "purple", "red"] ;
+  var data = [{name: "Programming", value: {{session['skill_score'][0]}} },
+              {name: "Stats", value: {{session['skill_score'][1]}} },
+              {name: "Math/OR", value: {{session['skill_score'][2]}} },
+              {name: "Business", value: {{session['skill_score'][3]}} },
+              {name: "ML/Big Data", value: {{session['skill_score'][4]}} }];
+
+  var barWidth = 60;
+  var width = (barWidth + 5) * data.length;
+  var height = 300;
+
+  var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
+  var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.value; })]).rangeRound([0, height]);
+
+  var padding = 20;
+  var barDemo = d3.select("#t-shaped").
+    append("svg:svg").
+    attr("width", width).
+    attr("height", height + padding);
+
+  barDemo.selectAll("rect").
+    data(data).
+    enter().
+    append("svg:rect").
+    attr("x", function(datum, index) { return x(index); }).
+    //attr("y", function(datum) { return height - y(datum.value); }).
+    attr("y", function(datum) {return padding; }).
+    attr("height", function(datum) { return y(datum.value)+padding; }).
+    attr("width", barWidth).
+    attr("fill", function(d,i) {return colors[i];} );
+
+  /*
+  barDemo.selectAll("text").
+    data(data).
+    enter().append("svg:text").
+    attr("x", function(datum, index) { return x(index) + barWidth; }).
+    //attr("y", function(datum) { return height - y(datum.value); }).
+    attr("y", function(datum) {return y(datum.value) + padding; }).
+    attr("dx", -barWidth/2).
+    attr("dy", "1.2em").
+    attr("text-anchor", "middle").
+    attr("style", "font-size: 10; font-family: Helvetica, sans-serif;").
+    text(function(datum) { return datum.value;}).
+    attr("fill", "white");
+    */
+
+  barDemo.selectAll("text.yAxis").
+    data(data).
+    enter().append("svg:text").
+    attr("x", function(datum, index) { return x(index) + barWidth; }).
+    attr("y", 0).
+    attr("dx", -barWidth/2).
+    attr("text-anchor", "middle").
+    attr("style", "font-size: 10; font-family: Helvetica, sans-serif").
+    text(function(datum) { return datum.name;}).
+    attr("transform", "translate(0, 18)").
+    attr("class", "yAxis");
+
+
+</script>
+
+<style>
+.axis line {
+  stroke: #000;
+}
+.axis path {
+  fill: none;
+  stroke: #000;
+}
+.axis + .axis g text {
+  display: none;
+}
+</style>
+
+<script type = "text/javascript">
+
+  var data=[
+    {"color":"red", "label":"Data Businessperson", "value":{{session['self_id_score'][0]}} },
+    {"color":"green", "label":"Data Creative", "value":{{session['self_id_score'][1]}} },
+    {"color":"blue", "label":"Data Researcher", "value":{{session['self_id_score'][2]}} },
+    {"color":"orange", "label":"Data Engineer", "value":{{session['self_id_score'][3]}} }
+  ];
+  
+
+  // data that you want to plot, I've used separate arrays for x and y values
+var labels = ['', '', '', ''],
+    xdata = [0, {{session['self_id_score'][1]}}, 0, -{{session['self_id_score'][3]}}],
+    ydata = [{{session['self_id_score'][0]}}, 0, -{{session['self_id_score'][2]}}, 0],
+    colors = ["red", "green", "blue", "orange"];
+
+
+// size and margins for the chart
+var margin = {top: 20, right: 20, bottom: 20, left: 20}
+  , width = 400 - margin.left - margin.right
+  , height = 400 - margin.top - margin.bottom;
+
+// x and y scales, I've used linear here but there are other options
+// the scales translate data values to pixel values for you
+var x = d3.scale.linear()
+          .domain([-d3.max(xdata), d3.max(xdata)])  // the range of the values to plot
+          .range([ 0, width ]);        // the pixel range of the x-axis
+
+var y = d3.scale.linear()
+          .domain([-d3.max(ydata), d3.max(ydata)])
+          .range([ height, 0 ]);
+
+// the chart object, includes all margins
+var chart = d3.select("#selfid")
+.append('svg:svg')
+.attr('width', width + margin.right + margin.left)
+.attr('height', height + margin.top + margin.bottom)
+.attr('class', 'chart')
+
+// the main object where the chart and axis will be drawn
+var main = chart.append('g')
+.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+.attr('width', width)
+.attr('height', height)
+.attr('class', 'main')   
+
+// draw the x axis
+var xAxis = d3.svg.axis()
+.scale(x)
+.orient('bottom');
+
+main.append('g')
+.attr('transform', 'translate(0,' + height + ')')
+.attr('class', 'main axis date')
+.call(xAxis);
+
+// draw the y axis
+var yAxis = d3.svg.axis()
+.scale(y)
+.orient('left');
+
+main.append('g')
+.attr('transform', 'translate(0,0)')
+.attr('class', 'main axis date')
+.call(yAxis);
+
+// draw the graph object
+var g = main.append("svg:g"); 
+
+g.selectAll("scatter-dots")
+  .data(ydata)  // using the values in the ydata array
+  .enter().append("svg:circle")  // create a new circle for each value
+      .attr("cy", function (d) { return y(d); } ) // translate y value to a pixel
+      .attr("cx", function (d,i) { return x(xdata[i]); } ) // translate x value
+      .attr("r", 30) // radius of circle
+      .style("opacity", 0.8) // opacity of circle
+      .style("fill", function(d, i) { return colors[i]; });
+
+</script>
+<script type="text/javascript">
+/*
+  var data=[
+    {"key":"a","time":0,"value": {{session['self_id_score'][0]}} },
+    {"key":"a","time":1,"value": {{session['self_id_score'][1]}} },
+    {"key":"a","time":2,"value": {{session['self_id_score'][2]}} },
+    {"key":"a","time":3,"value": {{session['self_id_score'][3]}} }
+  ];
+
+  var labels = ['Data Businessperson', 'Data Creative', 'Data Researcher', 'Data Engineer'];
+
+  var formatDate = d3.time.format("%a"),
+      formatDay = function(d) { return formatDate(new Date(2007, 0, d)); };
+
+  var width = 460,
+      height = 400,
+      outerRadius = height / 2 - 10,
+      innerRadius = 100;
+
+  var angle = d3.time.scale()
+      .range([0, 2 * Math.PI]);
+
+  var radius = d3.scale.linear()
+      .range([innerRadius, outerRadius]);
+
+  var z = d3.scale.category20c();
+
+  var stack = d3.layout.stack()
+      .offset("zero")
+      .values(function(d) { return d.values; })
+      .x(function(d) { return d.time; })
+      .y(function(d) { return d.value; });
+
+  var nest = d3.nest()
+      .key(function(d) { return d.key; });
+
+  var line = d3.svg.line.radial()
+      .interpolate("cardinal-closed")
+      .angle(function(d) { return angle(d.time); })
+      .radius(function(d) { return radius(d.y0 + d.y); });
+
+  var area = d3.svg.area.radial()
+      .interpolate("cardinal-closed")
+      .angle(function(d) { return angle(d.time); })
+      .innerRadius(function(d) { return radius(d.y0); })
+      .outerRadius(function(d) { return radius(d.y0 + d.y); });
+
+  var svg = d3.select("#selfid").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+    .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+
+  var layers = stack(nest.entries(data));
+
+    // Extend the domain slightly to match the range of [0, 2π].
+  angle.domain([0, d3.max(data, function(d) { return d.time + 1; })]);
+  radius.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
+
+  svg.selectAll(".layer")
+    .data(layers)
+    .enter().append("path")
+    .attr("class", "layer")
+    .attr("d", function(d) { return area(d.values); })
+    .style("fill", function(d, i) { return z(i); });
+
+  svg.selectAll(".axis")
+    .data(d3.range(angle.domain()[1]))
+    .enter().append("g")
+      .attr("class", "axis")
+      .attr("transform", function(d) { return "rotate(" + angle(d) * 180 / Math.PI + ")"; })
+    .call(d3.svg.axis()
+      .scale(radius.copy().range([-innerRadius, -outerRadius]))
+      .orient("left"))
+    .append("text")
+      .attr("y", -innerRadius + 6)
+      .attr("dy", "1em")
+      .attr("text-anchor", "middle")
+      .text(function(d,i) { return labels[i]; }); //{ return formatDay(d); });
+  //});
+*/
+</script>
+
+
+{% endblock %}

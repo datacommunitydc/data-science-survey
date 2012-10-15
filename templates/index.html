@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<p>Answer questions about how you rank your skills and how you think of yourself, and get a badge and a description of _your_ type of Data Scientist!</p>
+<p>Needs a couple of sentences about where the data to do this came from, and a link to an About page with more details of the survey, who's behind it, links to the DC2 blog post and my talk, etc.
+<a href = "http://datacommunitydc.org/">Random link to DatacommunityDC.org</a>
+</p>
+
+<a href="{{ url_for('q1') }}" class="extralarge awesome green">Get Started</a>
+	
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="radiobuttons span-20 last">
+	<!-- put some radio buttons here -->
+	<h2>I think of myself as a/an . . .</h2>
+	<form action="{{ url_for('results') }}" method=post class=results>
+        <fieldset style="background-color:white">
+            <!--<font style="font-size:1.2em"><strong>Scientist</strong></font>-->
+            <legend>Scientist</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="scientist" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="scientist" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="scientist" value="3" checked/>Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="scientist" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="scientist" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Engineer</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="engineer" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="engineer" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="engineer" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="engineer" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="engineer" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Business Person</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="bp" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="bp" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="bp" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="bp" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="bp" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Artist</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="artist" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="artist" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="artist" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="artist" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="artist" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Researcher</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="researcher" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="researcher" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="researcher" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="researcher" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="researcher" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Statistician</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="stats" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="stats" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="stats" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="stats" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="stats" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Jack of All Trades</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="jack" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="jack" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="jack" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="jack" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="jack" value="1" />Completely Disagree </label>
+        </fieldset>	    
+        <fieldset>
+            <legend>Leader</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="leader" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="leader" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="leader" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="leader" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="leader" value="1" />Completely Disagree </label>
+        </fieldset>	     
+        <fieldset>
+            <legend>Entrepreneur</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="ent" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ent" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ent" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ent" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ent" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Developer</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="dev" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="dev" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="dev" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="dev" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="dev" value="1" />Completely Disagree </label>
+        </fieldset>
+        <fieldset>
+            <legend>Data Scientist</legend>
+			<label style = "margin-left:30px;"><input type="radio" name="ds" value="5" />Completely Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ds" value="4" />Agree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ds" value="3" checked />Neutral </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ds" value="2" />Disagree </label>
+			<label style = "margin-left:30px;"><input type="radio" name="ds" value="1" />Completely Disagree </label>
+        </fieldset>	 		        	                
+        <!-- NEED MORE QUESTIONS
+        Have you ever labeled yourself a Data Scientist?
+    	-->
+    	<br/>
+    	<button type='submit' class="large awesome green">Get Your Results</button>
+        <!----<input type="submit" value="Finish Quiz!" />---->
+	</form>
+</div>
+{% endblock %}

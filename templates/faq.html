@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h3>Who's behind this project?</h3>
+
+<p>Three DC-area Data Scientists -- Harlan Harris, Sean Murphy, and Marck Vaisman. They did a <a href="{{ url_for('surveydetails') }}">survey</a> of data scientists around the world to try to get a better handle on the diversity of skills and backgrounds of this newly-branded professional community. Harlan presented some of the results at the <a href="http://www.datagotham.com/">DataGotham</a> conference in September, 2012 -- watch it on <a href="http://www.youtube.com/watch?v=aMDe5pODkB0">YouTube</a>.</p>
+
+<h3>How was I categorized?</h3>
+
+<p>We compared your responses to clusters of responses from the survey. The names of the clusters are our own and are intended to be descriptive of their components. We welcome suggestions for better names!</p>
+
+<h3>What does the <a href="http://en.wikipedia.org/wiki/T-shaped_skills">T-Shaped Skills</a> Chart mean? Why is it upside down?</h3>
+
+<p>It's a summary of your Skills rankings based on the five categories of Skill Groups we identified from the survey data. Longer bars indicate Skill Groups whose component skills you ranked higher. It's upside-down because we find the notion of <a href="http://en.wikipedia.org/wiki/T-shaped_skills">T-shaped skills</a> particularly appealing for Data Scientists.</p>
+
+<h3>What does the Self-ID Radar Chart mean?</h3>
+
+<p>It's a summary of your Self-ID ratings based on the four categories of Self-ID Groups we identified from the survey data. Larger values indicate Self-ID Groups whose component self-ID questions you answered most positively. </p>
+
+<h3>Where do the eerily-accurate (or laughably inaccurate) paragraphs describing me come from?</h3>
+
+<p>We wrote them based on cross-tab models of other questions on the survey, using the primary Skills and Self-ID Groups for each survey respondent. And we made stuff up according to our own personal experiences and biases. YMMV.</p>
+
+<h3>What clustering technique did you use?</h3>
+<p>We used the <a href="http://en.wikipedia.org/wiki/Nonnegative_matrix_factorization">nonnegative matrix factorization</a> technique.</p>
+
+
+<h3>How do we get in contact with you?</h3>
+
+
+<a mailto="harlan@datacommunitydc.org">harlan@datacommunitydc.org</a>
+<br/>
+<a mailto="seanm@datacommunitydc.org">seanm@datacommunitydc.org</a>
+<br/>
+<a mailto="marck@datacommunitydc.org">marck@datacommunitydc.org</a>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Return to your survey results. <a href="{{ url_for('start') }}" class="large awesome">Your Results</a></h2>
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Want more information about the survey? <a href="{{ url_for('surveydetails') }}" class="large awesome red">Survey Details</a></h2>
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green">Retake the Quiz!</a></h2>
+</div>
+
+{% endblock %}

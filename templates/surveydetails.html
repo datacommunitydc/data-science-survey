@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="span-16 colborder">
+<p>Earlier this year, several of us from the DC2 community (Harlan Harris, Marck Vaisman, and Sean Murphy) conducted a web-based survey of Data Scientists, with the goal of better understanding the varieties of people, skills, and experiences that fall under this rather broad buzzword. We have analyzed the results from over 250 respondents, and are excited to share some initial findings here!</p>
+
+<p>The first task in the survey was to rank a set of 21 skill categories. We used the technique of <a href="http://en.wikipedia.org/wiki/Non-negative_matrix_factorization">non-negative matrix factorization</a> to find five underlying dimensions of variation among the rankings. We found that Data Scientists have skills that tend to be associated together, and by grouping those skills, we can provide people with a useful shorthand. Here are the skills groups, with category names that we think clarify what we as Data Scientists bring to the table:
+
+<ul>
+	<li><strong>Programming:</strong> Back-end Programming, Front-end Programming, Systems Administration</li>
+	<li><strong>Stats:</strong> Classical Statistics, Data Manipulation, Science, Spatial Statistics, Surveys and Marketing, Temporal Statistics, Visualization</li>
+	<li><strong>
+	Math:</strong> Algorithms, Bayesian/Monte Carlo Statistics, Graphical Models, Math, Optimization, Simulation</li>
+	<li><strong>Business:</strong> Business, Product Development</li>
+	<li><strong>Machine Learning/Big Data:</strong> Big and Distributed Data, Machine Learning, Structured Data, Unstructured Data</li>
+</ul>
+
+<p>Clearly not everyone who is strong in some aspects of these categories will be expert in every area. But, as a general rule, these skill groups co-occur. Equally important, a Data Scientist who may have skills in Machine Learning and Big Data may have little expertise in Surveys or Front-End Programming.</p>
+
+<p>We performed a similar NMF analysis on a series of self-evaluation questions near the end of the survey. Respondents gave “Completely Agree” to “Completely Disagree” responses to statements that started with “I think of myself as a(n)…” We view the Self-Identification groups that fell out of the NMF analysis as being critical to clarifying the diverse backgrounds and interests of Data Scientists. Here are how the responses to these questions grouped, along with category names that we feel are useful:<p>
+
+<ul>
+	<li><strong>Data Businessperson:</strong> Business person, Leader, Entrepreneur</li>
+	<li><strong>Data Creative:</strong> Artist, Jack-of-All-Trades, Hacker</li>
+	<li><strong>Data Researcher:</strong> Scientist, Researcher, Statistician</li>
+	<li><strong>Data Engineer:</strong> Engineer, Developer</li>
+</ul>
+
+<p>Many people responded to many of these self-ID questions positively, but the analysis shows underlying dimensions of variation that can inform peoples’ career paths and interests. Even more fascinating, the two groupings we identified, skills and self-ID, correlate in ways that we think are highly valuable to Data Scientists and organizations that need our skills. The below graph shows how survey participants, labeled by their primary (by strongest factor loading) skill group and their primary self-ID group, arrange themselves in a cross-tabulation table (click to see larger).</p>
+
+<img src="{{ url_for('static', filename='SkillsSelfIDMosaic-edit-500px.png') }}"/>
+
+<p>As we further dive into these results, we will be stressing the point that our data shows substantial variation in skills and interests among Data Scientists. The field is quite diverse, and a Data Creative who can build an amazing Javascript tool to visualize data from a set of disparate sources may be very different from a Data Businessperson who starts a data-related business or a Data Researcher who uses advanced mathematical tools to bring insight to organizations or a Data Engineer who integrates enterprise databases with predictive or optimization systems.</p>
+
+<p>We’d love to share more results with you! If you are in the Washington, DC area on August 27th, please come see us talk about the survey results at the Data Science DC Meetup! And if you’ll be attending DataGotham in New York City on September 14th, we’ll be presenting highlights there too! Otherwise, stay tuned for future presentations and publications. If you have any specific questions that we might be able to answer as we further explore the data, please email us!</p>
+</div>
+<div class="span-7 last">
+	<h3>Survey Researchers</h3>
+
+	<p><a href="http://www.linkedin.com/in/harlanharris">Harlan D. Harris</a> is a Senior Data Scientist at Kaplan Test Prep, the Co-Founder and Co-Organizer of the Data Science DC Meetup, and the Co-Founder and President of Data Community DC, Inc. He has a PhD in Computer Science (Machine Learning) from the University of Illinois at Urbana-Champaign and worked as a researcher in several Psychology departments before turning to industry.</p>
+	<hr/>
+
+	<p><a href="http://www.linkedin.com/in/marckvaisman">Marck Vaisman</a> is the Principal Data Scientist at DataXtract, LLC where he helps clients ranging from startups to Fortune 500 firms with all kinds of data science projects. His professional experience spans the management consulting, telecommunications, Internet, and technology industries. He is the co-founder of Data Community DC, an organization focused on building the Washington DC area data community and promoting data and statistical sciences by running meetup and other events. He has an MBA from Vanderbilt University and a B.S. in Mechanical Engineering from Boston University.</p>
+	<hr/>
+
+	<p><a href="http://www.linkedin.com/in/seanpatrickmurphy1">Sean Patrick Murphy</a>, with degrees in mathematics, electrical engineering, and biomedical engineering and an MBA from Oxford University, has served as a senior scientist at the Johns Hopkins Applied Physics Laboratory for the past ten years. Previously, he served as the Chief Data Scientist at WiserTogether, a series A funded health care analytics firm, and the Director of Research at Manhattan Prep, a boutique graduate educational company. He was also the co-founder and CEO of a big data-focused startup: CloudSpree.</p>
+	<hr/>	
+
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Return to your survey results. <a href="{{ url_for('start') }}" class="large awesome">Your Results</a></h2>
+</div>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Have some questions about your results? <a href="{{ url_for('faq') }}" class="large awesome blue">FAQ</a></h2>
+</div>
+
+
+<div class="span-24 last">
+  <hr/>
+  <h2>A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green">Retake the Quiz!</a></h2>
+</div>
+{% endblock %}
