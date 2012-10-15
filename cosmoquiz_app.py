@@ -18,9 +18,9 @@ from models import *
 
 
 # configuration
-DATABASE = '/tmp/badges.db'
-USERNAME = 'admin'
-PASSWORD = 'default'
+#DATABASE = '/tmp/badges.db'
+#USERNAME = 'admin'
+#PASSWORD = 'default'
 #SERVER_NAME = 'http://www.dancesportlife.com/cosmoquiz/'
 #ROOT_PATH = '/home5/dancespo/public_html/cosmoquiz/'
 DEBUG = True
@@ -31,9 +31,9 @@ CSRF_ENABLED = True
 # create application
 app = Flask(__name__.split('.')[0])
 app.config.from_object(__name__)
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+#app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/badges.db'
 
 
