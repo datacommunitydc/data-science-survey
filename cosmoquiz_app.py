@@ -2,6 +2,9 @@
 from __future__ import with_statement
 from contextlib import closing
 
+from flask.ext.sqlalchemy import SQLAlchemy
+
+
 #import sqlite3
 import random
 import os.path
@@ -27,8 +30,11 @@ CSRF_ENABLED = True
 
 # create application
 app = Flask(__name__.split('.')[0])
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+db = SQLAlchemy(app)
 
 
 @app.route('/index')
