@@ -1,26 +1,26 @@
 # all the imports
-from __future__ import with_statement
-from contextlib import closing
+#from __future__ import with_statement
+#from contextlib import closing
 
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask import Flask, request, session, make_response, g, redirect, url_for, abort, render_template, flash
 
 
 #import sqlite3
 import random
-import os.path
+import os
 import csv
 import re
+
 import blurbs
 import results as r
+from models import *
 
-from flask import Flask, request, session, make_response, g, redirect, url_for, \
-     abort, render_template, flash
 
 
 # configuration
-#DATABASE = '/tmp/badges.db'
-#USERNAME = 'admin'
-#PASSWORD = 'default'
+DATABASE = '/tmp/badges.db'
+USERNAME = 'admin'
+PASSWORD = 'default'
 #SERVER_NAME = 'http://www.dancesportlife.com/cosmoquiz/'
 #ROOT_PATH = '/home5/dancespo/public_html/cosmoquiz/'
 DEBUG = True
@@ -30,25 +30,11 @@ CSRF_ENABLED = True
 
 # create application
 app = Flask(__name__.split('.')[0])
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config.from_object(__name__)
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-db = SQLAlchemy(app)
-
-
-class User(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(80))
-	email = db.Column(db.String(120), unique=True)
-
-	def __init__(self, name, email):
-		self.name = name
-		self.email = email
-
-	def __repr__(self):
-		return '<Name %r>' % self.name
-
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/badges.db'
 
 
 
@@ -99,6 +85,15 @@ def results():
 					float(request.form['ent']),
 					float(request.form['dev']),
 					float(request.form['ds']) ]					
+
+	#print session['q1']
+	#print str(session['q2']).strip('[]')
+
+	#Inserting database write 
+	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'])
+	#result = Result('bob','sean',session['user_id'])
+	db.session.add(result)
+	db.session.commit()
 
 	#write results to file with session id
 	""""

@@ -1,10 +1,9 @@
-drop table if exists entries;
-
-create table entries (
+drop table if exists results;
+create table results (
 	id integer primary key autoincrement,
-	sessionid integer, not null
-
-	email string null,
-
+	session_id integer not null,
+	q1 string not null,
+	q2 string not null,
+	email string null
 );
 

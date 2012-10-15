@@ -2,37 +2,44 @@
 {% block content %}
 
 <div class="span-16 colborder">
-<p>Earlier this year, several of us from the DC2 community (Harlan Harris, Marck Vaisman, and Sean Murphy) conducted a web-based survey of Data Scientists, with the goal of better understanding the varieties of people, skills, and experiences that fall under this rather broad buzzword. We have analyzed the results from over 250 respondents, and are excited to share some initial findings here!</p>
+	<p>Earlier this year, several of us from the DC2 community (Harlan Harris, Marck Vaisman, and Sean Murphy) conducted a web-based survey of Data Scientists, with the goal of better understanding the varieties of people, skills, and experiences that fall under this rather broad buzzword. We have analyzed the results from over 250 respondents, and are excited to share some initial findings here!</p>
 
-<p>The first task in the survey was to rank a set of 21 skill categories. We used the technique of <a href="http://en.wikipedia.org/wiki/Non-negative_matrix_factorization">non-negative matrix factorization</a> to find five underlying dimensions of variation among the rankings. We found that Data Scientists have skills that tend to be associated together, and by grouping those skills, we can provide people with a useful shorthand. Here are the skills groups, with category names that we think clarify what we as Data Scientists bring to the table:
+	<p>The first task in the survey was to rank a set of 21 skill categories. We used the technique of <a href="http://en.wikipedia.org/wiki/Non-negative_matrix_factorization">non-negative matrix factorization</a> to find five underlying dimensions of variation among the rankings. We found that Data Scientists have skills that tend to be associated together, and by grouping those skills, we can provide people with a useful shorthand. Here are the skills groups, with category names that we think clarify what we as Data Scientists bring to the table:
 
-<ul>
-	<li><strong>Programming:</strong> Back-end Programming, Front-end Programming, Systems Administration</li>
-	<li><strong>Stats:</strong> Classical Statistics, Data Manipulation, Science, Spatial Statistics, Surveys and Marketing, Temporal Statistics, Visualization</li>
-	<li><strong>
-	Math:</strong> Algorithms, Bayesian/Monte Carlo Statistics, Graphical Models, Math, Optimization, Simulation</li>
-	<li><strong>Business:</strong> Business, Product Development</li>
-	<li><strong>Machine Learning/Big Data:</strong> Big and Distributed Data, Machine Learning, Structured Data, Unstructured Data</li>
-</ul>
+	<ul>
+		<li><strong>Programming:</strong> Back-end Programming, Front-end Programming, Systems Administration</li>
+		<li><strong>Stats:</strong> Classical Statistics, Data Manipulation, Science, Spatial Statistics, Surveys and Marketing, Temporal Statistics, Visualization</li>
+		<li><strong>
+		Math:</strong> Algorithms, Bayesian/Monte Carlo Statistics, Graphical Models, Math, Optimization, Simulation</li>
+		<li><strong>Business:</strong> Business, Product Development</li>
+		<li><strong>Machine Learning/Big Data:</strong> Big and Distributed Data, Machine Learning, Structured Data, Unstructured Data</li>
+	</ul>
 
-<p>Clearly not everyone who is strong in some aspects of these categories will be expert in every area. But, as a general rule, these skill groups co-occur. Equally important, a Data Scientist who may have skills in Machine Learning and Big Data may have little expertise in Surveys or Front-End Programming.</p>
+	<p>Clearly not everyone who is strong in some aspects of these categories will be expert in every area. But, as a general rule, these skill groups co-occur. Equally important, a Data Scientist who may have skills in Machine Learning and Big Data may have little expertise in Surveys or Front-End Programming.</p>
 
-<p>We performed a similar NMF analysis on a series of self-evaluation questions near the end of the survey. Respondents gave “Completely Agree” to “Completely Disagree” responses to statements that started with “I think of myself as a(n)…” We view the Self-Identification groups that fell out of the NMF analysis as being critical to clarifying the diverse backgrounds and interests of Data Scientists. Here are how the responses to these questions grouped, along with category names that we feel are useful:<p>
+	<p>We performed a similar NMF analysis on a series of self-evaluation questions near the end of the survey. Respondents gave “Completely Agree” to “Completely Disagree” responses to statements that started with “I think of myself as a(n)…” We view the Self-Identification groups that fell out of the NMF analysis as being critical to clarifying the diverse backgrounds and interests of Data Scientists. Here are how the responses to these questions grouped, along with category names that we feel are useful:<p>
 
-<ul>
-	<li><strong>Data Businessperson:</strong> Business person, Leader, Entrepreneur</li>
-	<li><strong>Data Creative:</strong> Artist, Jack-of-All-Trades, Hacker</li>
-	<li><strong>Data Researcher:</strong> Scientist, Researcher, Statistician</li>
-	<li><strong>Data Engineer:</strong> Engineer, Developer</li>
-</ul>
+	<ul>
+		<li><strong>Data Businessperson:</strong> Business person, Leader, Entrepreneur</li>
+		<li><strong>Data Creative:</strong> Artist, Jack-of-All-Trades, Hacker</li>
+		<li><strong>Data Researcher:</strong> Scientist, Researcher, Statistician</li>
+		<li><strong>Data Engineer:</strong> Engineer, Developer</li>
+	</ul>
 
-<p>Many people responded to many of these self-ID questions positively, but the analysis shows underlying dimensions of variation that can inform peoples’ career paths and interests. Even more fascinating, the two groupings we identified, skills and self-ID, correlate in ways that we think are highly valuable to Data Scientists and organizations that need our skills. The below graph shows how survey participants, labeled by their primary (by strongest factor loading) skill group and their primary self-ID group, arrange themselves in a cross-tabulation table (click to see larger).</p>
+	<p>Many people responded to many of these self-ID questions positively, but the analysis shows underlying dimensions of variation that can inform peoples’ career paths and interests. Even more fascinating, the two groupings we identified, skills and self-ID, correlate in ways that we think are highly valuable to Data Scientists and organizations that need our skills. The below graph shows how survey participants, labeled by their primary (by strongest factor loading) skill group and their primary self-ID group, arrange themselves in a cross-tabulation table (click to see larger).</p>
 
-<img src="{{ url_for('static', filename='SkillsSelfIDMosaic-edit-500px.png') }}"/>
+	<img src="{{ url_for('static', filename='SkillsSelfIDMosaic-edit-500px.png') }}"/>
 
-<p>As we further dive into these results, we will be stressing the point that our data shows substantial variation in skills and interests among Data Scientists. The field is quite diverse, and a Data Creative who can build an amazing Javascript tool to visualize data from a set of disparate sources may be very different from a Data Businessperson who starts a data-related business or a Data Researcher who uses advanced mathematical tools to bring insight to organizations or a Data Engineer who integrates enterprise databases with predictive or optimization systems.</p>
+	<p>As we further dive into these results, we will be stressing the point that our data shows substantial variation in skills and interests among Data Scientists. The field is quite diverse, and a Data Creative who can build an amazing Javascript tool to visualize data from a set of disparate sources may be very different from a Data Businessperson who starts a data-related business or a Data Researcher who uses advanced mathematical tools to bring insight to organizations or a Data Engineer who integrates enterprise databases with predictive or optimization systems.</p>
 
-<p>We’d love to share more results with you! If you are in the Washington, DC area on August 27th, please come see us talk about the survey results at the Data Science DC Meetup! And if you’ll be attending DataGotham in New York City on September 14th, we’ll be presenting highlights there too! Otherwise, stay tuned for future presentations and publications. If you have any specific questions that we might be able to answer as we further explore the data, please email us!</p>
+	<p>If you want even more information, check out Harlan's presentation at Data Gotham, available via <a href="http://www.youtube.com/watch?v=aMDe5pODkB0">YouTube</a>. If you have any specific questions that we might be able to answer as we further explore the data, please email us!</p>
+	harlan [@] datacommunitydc.org
+	<br/>
+	seanm [@] datacommunitydc.org
+	<br/>
+	marck [@] datacommunitydc.org
+	<br/>
+
 </div>
 <div class="span-7 last">
 	<h3>Survey Researchers</h3>
