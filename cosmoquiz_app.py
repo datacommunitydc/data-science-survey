@@ -30,7 +30,8 @@ from models import *
 # create application
 app = Flask(__name__.split('.')[0])
 app.config.from_object(__name__)
-app.config.from_object('config.DevelopmentConfig')
+#app.config.from_object('config.DevelopmentConfig')
+app.config.from_object('config.ProductionConfig')
 
 #app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 

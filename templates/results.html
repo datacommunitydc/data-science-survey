@@ -13,12 +13,22 @@
 </div>
 <div class="span-11  last">
   <h3 style="text-align:center">Self ID Radar Chart</h2>
-  <div id="selfid" style="margin-left:auto;
-margin-right:auto;"></div>
+  <div id="selfid"></div>
 </div>
+
 <div class="span-24 last">
   <p>{{ blurb }}</p>
 </div>
+
+<!--
+<div class="span-24 last">
+  <hr/>
+  <form>
+  <label>Email:</label>
+  <input type="email" id="email_addr" name="email_addr">
+  </form>
+</div>
+-->
 
 <div class="span-24 last">
   <hr/>
@@ -153,9 +163,7 @@ var chart = d3.select("#selfid")
 .append('svg:svg')
 .attr('width', width + margin.right + margin.left)
 .attr('height', height + margin.top + margin.bottom)
-.attr('class', 'chart')
-.attr('display','block')
-.attr('margin', 'auto');
+.attr('class', 'chart');
 
 // the main object where the chart and axis will be drawn
 var main = chart.append('g')
