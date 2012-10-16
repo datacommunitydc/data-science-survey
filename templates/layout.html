@@ -29,9 +29,10 @@
 </head>
 
 <body>
+  <div class="container">
   <div class="container span-24 prepend-1 last">
     <div class="span-23 last">
-      <div class="span-16">
+      <div class="span-17">
         <br/>
         <h1>Data Scientist Badges</h1>
         <h3>Make a badge of your skills and your self-identification!</h3>
@@ -45,7 +46,7 @@
     {% if messages %}
     <ul>
     {% for message in messages %}
-        <li>{{ message }} </li>
+      <li>{{ message }} </li>
     {% endfor %}
     </ul>
     {% endif %}
@@ -53,6 +54,7 @@
 
       {% block content %}{% endblock %}
 
+  </div>
   </div>
 </body>
 </html>

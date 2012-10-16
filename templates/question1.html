@@ -23,9 +23,9 @@
 
 	<h2>Rank your Skills</h2>
 	<div class="demo span-24 last" style="min-height:0px;">
-		<h4>Drag the items from the column on the right to the one on the left. Place your best skills at the top.</h4>
-		<ul id="sortable1" class="connectedSortable">
-			<!--<h3>Drag the items below to the column on the right</h3>-->
+		<h4>Drag the items from the <font style="color:red;"><strong>left column</strong></font> to the <font style="color:green;"><strong>right column</strong></font>. Place your best skills at the top.</h4>
+		<ul id="sortable1" class="connectedSortable" style="border:1px solid red;">
+			<li class="ui-state-default"><em>Algorithms</em> (ex: computational complexity, CS theory)<input id="id_name" name="id_name" type="hidden" value="0"/></li>
 			<li class="ui-state-default"><em>Back-End Programming</em> (ex: JAVA/C++/Objective C)<input id="id_name" name="id_name" type="hidden" value="1" /></li>
 			<li class="ui-state-default"><em>Bayesian/Monte-Carlo Statistics</em> (ex: MCMC, BUGS)<input id="id_name" name="id_name" type="hidden" value="2" /></li>
 			<li class="ui-state-default"><em>Big and Distributed Data</em> (ex: Hadoop, Map/Reduce)<input id="id_name" name="id_name" type="hidden" value="3" /></li>
@@ -51,9 +51,8 @@
 
 		<form action="{{ url_for('q2') }}" method=post>
 
-			<ul id="sortable2" class="connectedSortable" style="border:1px solid green;">
-				<!--<h3>Place your best skill at the top</h3>-->
-				<li class="ui-state-default"><em>Algorithms</em> (ex: computational complexity, CS theory)<input id="id_name" name="id_name" type="hidden" value="0"/></li>
+			<ul id="sortable2" class="connectedSortable" style="border:1px solid green; min-height:40px; min-width:422px;">
+				
 				<!-- <li class="ui-state-highlight">Top Skill -- keep me on top</li>
 				<li class="ui-state-highlight">Bottom Skill -- keep me on the bottom</li>  -->
 			</ul>
