@@ -9,6 +9,7 @@ class Config(object):
 	SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/badges.db'
 
 class ProductionConfig(Config):
+	DEBUG = True
 	if 'DATABASE_URL' in os.environ.keys():
 		DATABASE_URI = os.environ['DATABASE_URL']
 	#SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
