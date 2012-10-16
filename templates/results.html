@@ -13,7 +13,8 @@
 </div>
 <div class="span-11  last">
   <h3 style="text-align:center">Self ID Radar Chart</h2>
-  <div id="selfid"></div>
+  <div id="selfid" style="margin-left:auto;
+margin-right:auto;"></div>
 </div>
 <div class="span-24 last">
   <p>{{ blurb }}</p>
@@ -126,16 +127,16 @@
   
 
   // data that you want to plot, I've used separate arrays for x and y values
-var labels = ['', '', '', ''],
+var labels = ['Businessperson', 'Creative', 'Researcher', 'Engineer'],
     xdata = [0, {{session['self_id_score'][1]}}, 0, -{{session['self_id_score'][3]}}],
     ydata = [{{session['self_id_score'][0]}}, 0, -{{session['self_id_score'][2]}}, 0],
-    colors = ["red", "green", "blue", "orange"];
+    colors = ["red", "green", "lightblue", "orange"];
 
 
 // size and margins for the chart
-var margin = {top: 20, right: 20, bottom: 20, left: 20}
-  , width = 360 - margin.left - margin.right
-  , height = 360 - margin.top - margin.bottom;
+var margin = {top: 30, right: 45, bottom: 30, left: 45}
+  , width = 430 - margin.left - margin.right
+  , height = 370 - margin.top - margin.bottom;
 
 // x and y scales, I've used linear here but there are other options
 // the scales translate data values to pixel values for you
@@ -153,6 +154,8 @@ var chart = d3.select("#selfid")
 .attr('width', width + margin.right + margin.left)
 .attr('height', height + margin.top + margin.bottom)
 .attr('class', 'chart')
+.attr('display','block')
+.attr('margin', 'auto');
 
 // the main object where the chart and axis will be drawn
 var main = chart.append('g')
@@ -161,54 +164,44 @@ var main = chart.append('g')
   .attr('height', height)
   .attr('class', 'main')   
 
-var myLine = chart.append("svg:line")
-    .attr("x1", x(0)+margin.left)
-    .attr("y1", y(ydata[0])+margin.top)
-    .attr("x2", x(0)+margin.left)
-    .attr("y2", y(ydata[2])+margin.top)
+var myLine = main.append("svg:line")
+    .attr("x1", x(0))
+    .attr("y1", y(ydata[0]))
+    .attr("x2", x(0))
+    .attr("y2", y(ydata[2]))
     .style("stroke", "black");
 
-var myLine = chart.append("svg:line")
-    .attr("x1", x(xdata[1])+margin.left)
-    .attr("y1", y(0)+margin.bottom)
-    .attr("x2", x(xdata[3])+margin.left)
-    .attr("y2", y(0)+margin.bottom)
+var myLine = main.append("svg:line")
+    .attr("x1", x(xdata[1]))
+    .attr("y1", y(0))
+    .attr("x2", x(xdata[3]))
+    .attr("y2", y(0))
     .style("stroke", "black");
 
-// draw the x axis
-/*
-var xAxis = d3.svg.axis()
-.scale(x)
-.orient('bottom');
 
-main.append('g')
-.attr('transform', 'translate(0,' + height + ')')
-.attr('class', 'main axis date')
-.call(xAxis);
-*/
-// draw the y axis
-/*
-var yAxis = d3.svg.axis()
-.scale(y)
-.orient('left');
-
-main.append('g')
-.attr('transform', 'translate(0,0)')
-.attr('class', 'main axis date')
-.call(yAxis);
-*/
 // draw the graph object
 var g = main.append("svg:g"); 
 
-g.selectAll("scatter-dots")
+dots = g.selectAll("scatter-dots")
   .data(ydata)  // using the values in the ydata array
   .enter().append("svg:circle")  // create a new circle for each value
       .attr("cy", function (d) { return y(d); } ) // translate y value to a pixel
       .attr("cx", function (d,i) { return x(xdata[i]); } ) // translate x value
       .attr("r", function(d,i) {return data[i].value *20} ) // radius of circle
-      .style("opacity", 0.8) // opacity of circle
-      .style("fill", function(d, i) { return colors[i]; })
-      .enter().append("svg:text").text("test");
+      .style("opacity", 1.0) // opacity of circle
+      .style("fill", function(d, i) { return colors[i]; });
+
+g.selectAll("text")
+  .data(ydata)
+  .enter().append("text")
+  .text(function(d,i) {return labels[i]})
+  .attr("x", function(d,i) { return x(xdata[i])} )
+  .attr("y", function(d) {return y(d)})
+  .attr("font-family", "sans-serif")
+  .attr("font-size", "11px")
+  .attr("font-weight","bold" )
+  .attr("text-anchor", "middle");
+
 
 </script>
 <script type="text/javascript">

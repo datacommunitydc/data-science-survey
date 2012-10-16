@@ -1,4 +1,4 @@
-def compute_results(session):
+def compute_results(session, DEBUG):
 	#Data Businessperson, Data Creative, Data Researcher, Data Engineer
 	# Rows: Scientist	Engineer	Business person	Artist	Researcher	Statistician	Jack of All Trades	Leader	Entrepeneur	Developer	Hacker
 	self_id_labels = ['Data Businessperson', 'Data Creative', 'Data Researcher', 'Data Engineer']
@@ -40,41 +40,55 @@ def compute_results(session):
 		print str(s) + '--->' + str(rank)
 		skill_rank_vec.append(rank) 
 	
-	print "skill_rank_vec"
-	print skill_rank_vec
+	if DEBUG:
+		print "skill_rank_vec"
+		print skill_rank_vec
+
 	skill_score = matmult(nmf_rank_coefs, skill_rank_vec)
-	skill_score_ndx_max = skill_score.index(max(skill_score))
 
 	loop_ndx=0;
+	
 	for i in skill_score:
 		skill_score[loop_ndx] = i/skill_normalization[loop_ndx]
 		loop_ndx += 1
 
+	skill_score_ndx_max = skill_score.index(max(skill_score))
+
+
 	session['skill_score'] = skill_score
 	session['skill_score_ndx_max'] = skill_score_ndx_max
-	print "skill_score"
-	print skill_score
-	print "Max Skill_Score_ndx"
-	print skill_score_ndx_max
+
+	if DEBUG:
+		print "skill_score"
+		print skill_score
+		print "Max Skill_Score_ndx"
+		print skill_score_ndx_max
+
 	session['skill_label'] = skill_labels[skill_score_ndx_max]
 
 	q2 = session['q2']
-	print "q2"
-	print q2
+
+	if DEBUG:
+		print "q2"
+		print q2
 	self_id_score = matmult(nmf_self_id_coefs, q2)
-	self_id_score_ndx_max = self_id_score.index(max(self_id_score))
 
 	loop_ndx = 0
 	for i in self_id_score:
 		self_id_score[loop_ndx] = i/self_id_normalization[loop_ndx]
 		loop_ndx += 1
 
+	self_id_score_ndx_max = self_id_score.index(max(self_id_score))
+
 	session['self_id_score'] = self_id_score
 	session['self_id_score_ndx_max'] = self_id_score_ndx_max
-	print "Self ID Score"
-	print self_id_score
-	print "Max Self_ID_Score_ndx"
-	print self_id_score_ndx_max
+
+	if DEBUG:
+		print "Self ID Score"
+		print self_id_score
+		print "Max Self_ID_Score_ndx"
+		print self_id_score_ndx_max
+
 	session['self_label'] = self_id_labels[self_id_score_ndx_max]
 
 	return(session)
@@ -86,5 +100,3 @@ def matmult(m, v):
 	for row in range(nrows):
 		w[row] = reduce(lambda x,y: x+y, map(lambda x,y: x*y, m[row], v))
 	return w
-
-
