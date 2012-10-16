@@ -86,12 +86,8 @@ def results():
 					float(request.form['dev']),
 					float(request.form['ds']) ]					
 
-	#print session['q1']
-	#print str(session['q2']).strip('[]')
-
 	#Inserting database write 
 	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'])
-	#result = Result('bob','sean',session['user_id'])
 	db.session.add(result)
 	db.session.commit()
 
