@@ -5,9 +5,15 @@
 
 <p>Just in case you were wondering, we will **NEVER** publish or provide to any third party unaggregated responses or identifying data.  If we learn anything astonishingly insightful, we will most definitely share this information with you (assuming you actually complete the survey and offer your email).</p>
 
-<p><a href = "http://datacommunitydc.org/">Random link to DatacommunityDC.org</a>
-</p>
-
 <a href="{{ url_for('q1') }}" class="extralarge awesome green">Get Started</a>
+
+<div class="span-24 last">
+  <hr/>
+  <h2>Have some questions about your results? <a href="{{ url_for('faq') }}" class="large awesome blue">FAQ</a></h2>
+</div>
+<div class="span-24 last">
+  <hr/>
+  <h2>Want more information about the survey? <a href="{{ url_for('surveydetails') }}" class="large awesome red">Survey Details</a></h2>
+</div>
 	
 {% endblock %}
