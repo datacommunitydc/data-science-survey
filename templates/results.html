@@ -8,11 +8,11 @@
 
 
 <div class="span-10 prepend-1 colborder">
-  <h3 style="text-align:center">T-Chart</h3>
+  <h3 style="text-align:center"><a href="http://en.wikipedia.org/wiki/T-shaped_skills" target="_blank" >Skills T-Chart</a></h3>
   <div id="t-shaped"></div>
 </div>
 <div class="span-11  last">
-  <h3 style="text-align:center">Self ID Radar Chart</h2>
+  <h3 style="text-align:center">Self ID Chart</h2>
   <div id="selfid"></div>
 </div>
 
@@ -41,7 +41,7 @@
 
 <div class="span-24 last">
   <hr/>
-  <h2>A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green">Retake the Quiz!</a></h2>
+  <h2 style = "vertical-align:top;">A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green">Retake the Quiz!</a></h2>
 </div>
 
 <div class="span-24 last">
@@ -140,7 +140,7 @@
 var labels = ['Businessperson', 'Creative', 'Researcher', 'Engineer'],
     xdata = [0, {{session['self_id_score'][1]}}, 0, -{{session['self_id_score'][3]}}],
     ydata = [{{session['self_id_score'][0]}}, 0, -{{session['self_id_score'][2]}}, 0],
-    colors = ["red", "green", "lightblue", "orange"];
+    colors = ["tan", "lightgreen", "lightblue", "yellow"];
 
 
 // size and margins for the chart
@@ -151,11 +151,11 @@ var margin = {top: 30, right: 45, bottom: 30, left: 45}
 // x and y scales, I've used linear here but there are other options
 // the scales translate data values to pixel values for you
 var x = d3.scale.linear()
-          .domain([-d3.max(xdata)-0.5, d3.max(xdata)+0.5])  // the range of the values to plot
+          .domain([-d3.max(xdata)*1.45, d3.max(xdata)*1.45])  // the range of the values to plot
           .range([ 0, width ]);        // the pixel range of the x-axis
 
 var y = d3.scale.linear()
-          .domain([-d3.max(ydata)-0.5, d3.max(ydata)+0.5])
+          .domain([-d3.max(ydata)*1.45, d3.max(ydata)*1.45])
           .range([ height, 0 ]);
 
 // the chart object, includes all margins
@@ -195,7 +195,7 @@ dots = g.selectAll("scatter-dots")
   .enter().append("svg:circle")  // create a new circle for each value
       .attr("cy", function (d) { return y(d); } ) // translate y value to a pixel
       .attr("cx", function (d,i) { return x(xdata[i]); } ) // translate x value
-      .attr("r", function(d,i) {return data[i].value *20} ) // radius of circle
+      .attr("r", function(d,i) {return data[i].value *15} ) // radius of circle
       .style("opacity", 1.0) // opacity of circle
       .style("fill", function(d, i) { return colors[i]; });
 
@@ -206,7 +206,7 @@ g.selectAll("text")
   .attr("x", function(d,i) { return x(xdata[i])} )
   .attr("y", function(d) {return y(d)})
   .attr("font-family", "sans-serif")
-  .attr("font-size", "11px")
+  .attr("font-size", "14px")
   .attr("font-weight","bold" )
   .attr("text-anchor", "middle");
 

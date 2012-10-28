@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<p>There is a debate raging (ok, maybe not raging) about what it means to be a data scientist. Do you work with data? any data? ever? Are you a researcher? scientist? economist? computer scientist? Have you ever labeled yourself a data scientist?  Could you spot one from a distance? Help us quantitatively determine what a data scientist is by taking a brief and fun survey. Why? Because without data, you are just another person with an opinion (also, we will present the results of the survey at a future DC Data Science meetup!)</p>
 
-<p>Just in case you were wondering, we will **NEVER** publish or provide to any third party unaggregated responses or identifying data.  If we learn anything astonishingly insightful, we will most definitely share this information with you (assuming you actually complete the survey and offer your email).</p>
+<p>Data Scientist is a hot new term for people who apply advanced statistical, analytical, and machine learning tools to organizational data, and particularly Big Data. But if there's one thing we've learned, it's that not all Data Scientists are alike. We come from different backgrounds, we attack problems from a variety of angles, and we think of our own career paths taking differet routes. Several DC-area Data Scientists conducted a survey in 2012, and found out a lot about the variation in people who could arguably be identified by the term. Now, <strong>you</strong> can take advantage of their hard work and find out what sort of highly-in-demand, brilliant, dare-we-say "sexy" Data Scientist you are!</p>
+
+<p>Just take a few minutes to rank your skills and tell us how you view yourself. In exchange, we'll tell you more and describe how you fit in! Advice provided is for entertainment value only!
+
+<p>Just in case you were wondering, we will <strong>**NEVER**</strong> publish or provide to any third party unaggregated responses or identifying data.</p>
 
 <a href="{{ url_for('q1') }}" class="extralarge awesome green">Get Started</a>
 
+<!--
 <div class="span-24 last">
   <hr/>
   <h2>Want more information about the survey? <a href="{{ url_for('surveydetails') }}" class="large awesome red">Survey Details</a></h2>
@@ -16,4 +20,5 @@
   <hr/>
   <h2>Have some questions about your results? <a href="{{ url_for('faq') }}" class="large awesome blue">FAQ</a></h2>
 </div>
+-->
 {% endblock %}

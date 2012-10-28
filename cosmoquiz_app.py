@@ -94,6 +94,8 @@ def results():
 
 	#Inserting database write instead of dump to file
 	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'])
+	
+	#UPDATE THIS!
 	db.session.add(result)
 	db.session.commit()
 
