@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 <h2>You're a <strong>{{ selflabel }}</strong> with top skills in <strong>{{ skill }}</strong>!</h2>
-<p>Insert legal disclaimer, For Entertainment Value Only!</p>
 
 <script type=text/javascript src="{{url_for('static', filename='js/radar.js') }}"></script>
 <script type=text/javascript src="{{url_for('static', filename='js/d3.v2.js') }}"></script>
@@ -18,6 +17,7 @@
 
 <div class="span-24 last">
   <p>{{ blurb }}</p>
+  <p>For entertainment value only!</p>
 </div>
 
 <!--
@@ -32,25 +32,25 @@
 
 <div class="span-24 last">
   <hr/>
-  <h2>Have some questions about your results? <a href="{{ url_for('faq') }}" class="large awesome blue">FAQ</a></h2>
+  <span style="font-size:32px; vertical-align:top;">Have some questions about your results? <a href="{{ url_for('faq') }}" class="large awesome blue">FAQ</a></span>
 </div>
 <div class="span-24 last">
   <hr/>
-  <h2>Want more information about the survey? <a href="{{ url_for('surveydetails') }}" class="large awesome red">Survey Details</a></h2>
-</div>
-
-<div class="span-24 last">
-  <hr/>
-  <h2 style = "vertical-align:top;">A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green">Retake the Quiz!</a></h2>
+  <span style="font-size:32px; vertical-align:top;">Want more information about the survey? <a href="{{ url_for('surveydetails') }}" class="large awesome red">Survey Details</a></span>
 </div>
 
 <div class="span-24 last">
   <hr/>
-  <h2>Spread the love ...  
+  <span style="font-size:32px; vertical-align:top;">A glutton for punishment? <a href="{{ url_for('reset') }}" class="large awesome green" style="vertical-align:top;">Retake the Quiz!</a></span>
+</div>
+
+<div class="span-24 last" >
+  <hr/>
+  <span style="font-size:32px; vertical-align:middle;">Spread the love ...  
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://survey.datacommunitydc.org/" data-text="What type of data scientist are you?" data-via="sayhitosean" data-size="large" data-related="datacommunitydc">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-  </h2>
+  </span>
 </div>
 
 
@@ -63,9 +63,9 @@
               {name: "Business", value: {{session['skill_score'][3]}} },
               {name: "ML/Big Data", value: {{session['skill_score'][4]}} }];
 
-  var barWidth = 60;
-  var width = (barWidth + 5) * data.length;
-  var height = 300;
+  var barWidth = 72;
+  var width = (barWidth + 4) * data.length;
+  var height = 310;
 
   var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
   var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.value; })]).rangeRound([0, height]);
@@ -109,7 +109,7 @@
     attr("y", 0).
     attr("dx", -barWidth/2).
     attr("text-anchor", "middle").
-    attr("style", "font-size: 10; font-family: Helvetica, sans-serif").
+    attr("style", "font-size: 12; font-family: Helvetica, sans-serif").
     text(function(datum) { return datum.name;}).
     attr("transform", "translate(0, 18)").
     attr("class", "yAxis");
@@ -199,7 +199,7 @@ dots = g.selectAll("scatter-dots")
   .enter().append("svg:circle")  // create a new circle for each value
       .attr("cy", function (d) { return y(d); } ) // translate y value to a pixel
       .attr("cx", function (d,i) { return x(xdata[i]); } ) // translate x value
-      .attr("r", function(d,i) {return data[i].value *15} ) // radius of circle
+      .attr("r", function(d,i) {return data[i].value *18} ) // radius of circle
       .style("opacity", 1.0) // opacity of circle
       .style("fill", function(d, i) { return colors[i]; });
 
@@ -214,90 +214,6 @@ g.selectAll("text")
   .attr("font-weight","bold" )
   .attr("text-anchor", "middle");
 
-
-</script>
-<script type="text/javascript">
-/*
-  var data=[
-    {"key":"a","time":0,"value": {{session['self_id_score'][0]}} },
-    {"key":"a","time":1,"value": {{session['self_id_score'][1]}} },
-    {"key":"a","time":2,"value": {{session['self_id_score'][2]}} },
-    {"key":"a","time":3,"value": {{session['self_id_score'][3]}} }
-  ];
-
-  var labels = ['Data Businessperson', 'Data Creative', 'Data Researcher', 'Data Engineer'];
-
-  var formatDate = d3.time.format("%a"),
-      formatDay = function(d) { return formatDate(new Date(2007, 0, d)); };
-
-  var width = 460,
-      height = 400,
-      outerRadius = height / 2 - 10,
-      innerRadius = 100;
-
-  var angle = d3.time.scale()
-      .range([0, 2 * Math.PI]);
-
-  var radius = d3.scale.linear()
-      .range([innerRadius, outerRadius]);
-
-  var z = d3.scale.category20c();
-
-  var stack = d3.layout.stack()
-      .offset("zero")
-      .values(function(d) { return d.values; })
-      .x(function(d) { return d.time; })
-      .y(function(d) { return d.value; });
-
-  var nest = d3.nest()
-      .key(function(d) { return d.key; });
-
-  var line = d3.svg.line.radial()
-      .interpolate("cardinal-closed")
-      .angle(function(d) { return angle(d.time); })
-      .radius(function(d) { return radius(d.y0 + d.y); });
-
-  var area = d3.svg.area.radial()
-      .interpolate("cardinal-closed")
-      .angle(function(d) { return angle(d.time); })
-      .innerRadius(function(d) { return radius(d.y0); })
-      .outerRadius(function(d) { return radius(d.y0 + d.y); });
-
-  var svg = d3.select("#selfid").append("svg")
-      .attr("width", width)
-      .attr("height", height)
-    .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-
-  var layers = stack(nest.entries(data));
-
-    // Extend the domain slightly to match the range of [0, 2π].
-  angle.domain([0, d3.max(data, function(d) { return d.time + 1; })]);
-  radius.domain([0, d3.max(data, function(d) { return d.y0 + d.y; })]);
-
-  svg.selectAll(".layer")
-    .data(layers)
-    .enter().append("path")
-    .attr("class", "layer")
-    .attr("d", function(d) { return area(d.values); })
-    .style("fill", function(d, i) { return z(i); });
-
-  svg.selectAll(".axis")
-    .data(d3.range(angle.domain()[1]))
-    .enter().append("g")
-      .attr("class", "axis")
-      .attr("transform", function(d) { return "rotate(" + angle(d) * 180 / Math.PI + ")"; })
-    .call(d3.svg.axis()
-      .scale(radius.copy().range([-innerRadius, -outerRadius]))
-      .orient("left"))
-    .append("text")
-      .attr("y", -innerRadius + 6)
-      .attr("dy", "1em")
-      .attr("text-anchor", "middle")
-      .text(function(d,i) { return labels[i]; }); //{ return formatDay(d); });
-  //});
-*/
 </script>
 
 
