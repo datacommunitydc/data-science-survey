@@ -101,8 +101,8 @@ def results():
 	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'], datetime.utcnow(),str(request.remote_addr))
 	
 	#UPDATE THIS!
-	#db.session.add(result)
-	#db.session.commit()
+	db.session.add(result)
+	db.session.commit()
 						
 	#need to compute results to display, everything stored in session
 	r.compute_results(session, app.config['DEBUG'])
