@@ -119,14 +119,15 @@ def results():
 	session['results_computed'] = True
 	#need to return a block of text to 
 
-	print request.remote_addr
-	print datetime.utcnow()
+	
 
 	if app.config['DEBUG']:
 		print "++++++++"
 		print session['skill_label']
 		print session['self_label']
 		print session.keys(), '\n'
+		print request.remote_addr
+		print datetime.utcnow()
 
 	skill_colors = ["orange", "green", "blue", "purple", "red"]
 	self_id_colors = ["#fdc592", "#b8f997", "#fba2c3", "#b3effe"]
