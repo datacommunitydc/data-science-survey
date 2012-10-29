@@ -13,6 +13,8 @@ class Result(db.Model):
 	q1 = db.Column(db.String)
 	q2 = db.Column(db.String)
 	email = db.Column(db.String)
+	date_added = db.Column(db.DateTime)
+	ip = db.Column(db.String)
 
 
 	def __init__(self, q1, q2, session_id):

@@ -14,6 +14,8 @@ import results as r
 import config
 from models import *
 
+from datetime import datetime
+
 
 
 # configuration
@@ -93,11 +95,11 @@ def results():
 					float(request.form['ds']) ]					
 
 	#Inserting database write instead of dump to file
-	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'])
+	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'],datetime.utcnow(),str(request.remote_addr))
 	
 	#UPDATE THIS!
-	#db.session.add(result)
-	#db.session.commit()
+	db.session.add(result)
+	db.session.commit()
 
 	#write results to file with session id
 	""""
@@ -116,6 +118,9 @@ def results():
 
 	session['results_computed'] = True
 	#need to return a block of text to 
+
+	print request.remote_addr
+	print datetime.utcnow()
 
 	if app.config['DEBUG']:
 		print "++++++++"
