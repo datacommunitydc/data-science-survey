@@ -48,8 +48,10 @@ def start():
 	if ( ('results_computed' in session) and (session['results_computed']) ):
 		return (render_template('results.html', 
 			blurb = blurbs.pick_blurb(session['skill_score_ndx_max'],session['self_id_score_ndx_max']), 
-			skill=session['skill_label'], 
-			selflabel=session['self_label']
+			skill=session['skill_label'],
+			skill_color = r.skill_colors(session['skill_score_ndx_max']), 
+			selflabel=session['self_label'],
+			self_id_color = r.self_id_colors(session['self_id_score_ndx_max'])
 		))
 	else:
 		session['user_id'] = str(random.randint(1, 999999))
@@ -80,6 +82,7 @@ def surveydetails():
 def faq():
 	return (render_template('faq.html'))
 
+
 @app.route('/results', methods=['post'])
 def results():
 	session['q2'] = [ float(request.form['scientist']), 
@@ -95,31 +98,17 @@ def results():
 					float(request.form['ds']) ]					
 
 	#Inserting database write instead of dump to file
-	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'],datetime.utcnow(),str(request.remote_addr))
+	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'], datetime.utcnow(),str(request.remote_addr))
 	
 	#UPDATE THIS!
-	db.session.add(result)
-	db.session.commit()
-
-	#write results to file with session id
-	""""
-	fname = "results/" + str(session['user_id']) + ".txt"
-	try: 
-		f = open(fname,"w'")
-		wr = csv.writer(f)		
-		wr.writerow([session['user_id'], session['q1'], session['q2'] ])
-		f.close()
-	except IOError as e:
-		print "File write error"
-	"""
+	#db.session.add(result)
+	#db.session.commit()
 						
 	#need to compute results to display, everything stored in session
 	r.compute_results(session, app.config['DEBUG'])
 
 	session['results_computed'] = True
 	#need to return a block of text to 
-
-	
 
 	if app.config['DEBUG']:
 		print "++++++++"
@@ -129,15 +118,12 @@ def results():
 		print request.remote_addr
 		print datetime.utcnow()
 
-	skill_colors = ["orange", "green", "blue", "purple", "red"]
-	self_id_colors = ["#fdc592", "#b8f997", "#fba2c3", "#b3effe"]
-
 	return (render_template('results.html', 
 				blurb = blurbs.pick_blurb(session['skill_score_ndx_max'],session['self_id_score_ndx_max']), 
 				skill=session['skill_label'],
-				skill_color = skill_colors[session['skill_score_ndx_max']], 
+				skill_color = r.skill_colors(session['skill_score_ndx_max']), 
 				selflabel=session['self_label'],
-				self_id_color = self_id_colors[session['self_id_score_ndx_max']]
+				self_id_color = r.self_id_colors(session['self_id_score_ndx_max'])
 			))
 
 @app.route('/reset')

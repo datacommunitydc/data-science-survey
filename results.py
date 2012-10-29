@@ -1,3 +1,20 @@
+def skill_colors(ndx=-1):
+	colors = ["orange", "green", "blue", "purple", "red"]
+	if ((ndx<0) | (ndx>len(colors))):
+		color = "black"
+	else:
+		color = colors[ndx]
+	return(color)
+
+def self_id_colors(ndx=-1):
+	colors = ["#fdc592", "#b8f997", "#fba2c3", "#b3effe"]
+	if ((ndx<0) | (ndx>len(colors))):
+		color = "grey"
+	else:
+		color = colors[ndx]
+	return(color)
+
+
 def compute_results(session, DEBUG):
 	#Data Businessperson, Data Creative, Data Researcher, Data Engineer
 	# Rows: Scientist	Engineer	Business person	Artist	Researcher	Statistician	Jack of All Trades	Leader	Entrepeneur	Developer	Hacker
