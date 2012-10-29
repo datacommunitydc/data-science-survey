@@ -96,8 +96,8 @@ def results():
 	result = Result(str(session['q1']).strip('[]'), str(session['q2']).strip('[]'), session['user_id'])
 	
 	#UPDATE THIS!
-	db.session.add(result)
-	db.session.commit()
+	#db.session.add(result)
+	#db.session.commit()
 
 	#write results to file with session id
 	""""
@@ -123,10 +123,15 @@ def results():
 		print session['self_label']
 		print session.keys(), '\n'
 
+	skill_colors = ["orange", "green", "blue", "purple", "red"]
+	self_id_colors = ["#fdc592", "#b8f997", "#fba2c3", "#b3effe"]
+
 	return (render_template('results.html', 
 				blurb = blurbs.pick_blurb(session['skill_score_ndx_max'],session['self_id_score_ndx_max']), 
-				skill=session['skill_label'], 
-				selflabel=session['self_label']
+				skill=session['skill_label'],
+				skill_color = skill_colors[session['skill_score_ndx_max']], 
+				selflabel=session['self_label'],
+				self_id_color = self_id_colors[session['self_id_score_ndx_max']]
 			))
 
 @app.route('/reset')

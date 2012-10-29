@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2>You're a <strong>{{ selflabel }}</strong> with top skills in <strong>{{ skill }}</strong>!</h2>
+<h2>You're a <strong><span style="color:{{ self_id_color }}; text-shadow: 2px 2px 2px black";>{{ selflabel }}</span></strong> with top skills in <strong><span style="color:{{ skill_color }};">{{ skill }}</span></strong>!</h2>
 
 <script type=text/javascript src="{{url_for('static', filename='js/radar.js') }}"></script>
 <script type=text/javascript src="{{url_for('static', filename='js/d3.v2.js') }}"></script>
@@ -17,7 +17,7 @@
 
 <div class="span-24 last">
   <p>{{ blurb }}</p>
-  <p>For entertainment value only!</p>
+  <p>Note: As amazingly accurate as the above description may (or may not) be, we aren't responsible for any related, impulse career decisions it prompts.</p>
 </div>
 
 <!--
@@ -50,9 +50,22 @@
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://survey.datacommunitydc.org/" data-text="What type of data scientist are you?" data-via="sayhitosean" data-size="large" data-related="datacommunitydc">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="tall" data-annotation="inline" data-width="300" data-href="http://survey.datacommunitydc.org"></div>
+
   </span>
 </div>
 
+
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 
 <script type="text/javascript">
 
@@ -144,7 +157,7 @@
 var labels = ['Businessperson', 'Creative', 'Researcher', 'Engineer'],
     xdata = [0, {{session['self_id_score'][1]}}, 0, -{{session['self_id_score'][3]}}],
     ydata = [{{session['self_id_score'][0]}}, 0, -{{session['self_id_score'][2]}}, 0],
-    colors = ["tan", "darkseagreen", "steelblue", "goldenrod"];
+    colors = ["#fdc592", "#b8f997", "#fba2c3", "#b3effe"];
 
 
 // size and margins for the chart
@@ -207,8 +220,8 @@ g.selectAll("text")
   .data(ydata)
   .enter().append("text")
   .text(function(d,i) {return labels[i]})
-  .attr("x", function(d,i) { return x(xdata[i])} )
-  .attr("y", function(d) {return y(d)})
+  .attr("x", function(d,i) { return x(xdata[i]);} )
+  .attr("y", function(d) {return y(d)+4;})
   .attr("font-family", "sans-serif")
   .attr("font-size", "14px")
   .attr("font-weight","bold" )
