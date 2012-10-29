@@ -17,7 +17,9 @@ class Result(db.Model):
 	ip = db.Column(db.String)
 
 
-	def __init__(self, q1, q2, session_id):
+	def __init__(self, q1, q2, session_id, date_added, ip):
 		self.session_id = session_id
 		self.q1 = q1
 		self.q2 = q2
+		self.date_added = date_added
+		self.ip = ip
