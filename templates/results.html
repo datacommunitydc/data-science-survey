@@ -81,7 +81,8 @@
   var height = 310;
 
   var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
-  var y = d3.scale.linear().domain([0, d3.max(data, function(datum) { return datum.value; })]).rangeRound([0, height]);
+  var y = d3.scale.linear().domain([0, 1 /*d3.max(data, function(datum) { return datum.value; }) */ ]).rangeRound([0, height]);
+  console.log({{session['skill_score']}})
 
   var padding = 20;
   var barDemo = d3.select("#t-shaped").
@@ -167,12 +168,13 @@ var margin = {top: 30, right: 45, bottom: 30, left: 45}
 
 // x and y scales, I've used linear here but there are other options
 // the scales translate data values to pixel values for you
+var max_val = d3.max([d3.max(xdata), d3.max(ydata)])
 var x = d3.scale.linear()
-          .domain([-d3.max(xdata)*1.45, d3.max(xdata)*1.45])  // the range of the values to plot
+          .domain([-max_val*1.45, max_val*1.45])  // the range of the values to plot
           .range([ 0, width ]);        // the pixel range of the x-axis
 
 var y = d3.scale.linear()
-          .domain([-d3.max(ydata)*1.45, d3.max(ydata)*1.45])
+          .domain([-max_val*1.45, max_val*1.45])
           .range([ height, 0 ]);
 
 // the chart object, includes all margins
