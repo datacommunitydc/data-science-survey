@@ -34,7 +34,10 @@ def compute_results(session, DEBUG):
 						[4.253356e-01, 2.220446e-16, 5.191935e-01, 2.220446e-16, 2.220446e-16, 4.322221e-01, 2.173335e-01, 2.220446e-16, 3.264821e-01, 3.112354e-01, 4.030644e-01, 4.938181e-01, 2.220446e-16, 3.439012e-01, 3.048536e-01, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.107039e-01, 2.220446e-16, 2.852953e-06],
 						[2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 1.268313e+00, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.248777e-01, 2.220446e-16, 2.691779e-01, 2.220446e-16, 1.069837e+00, 1.046090e-13, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 5.141404e-07],
 						[2.220446e-16, 2.220446e-16, 2.220446e-16, 5.283354e-01, 2.220446e-16, 2.220446e-16, 2.980927e-01, 2.220446e-16, 2.220446e-16, 3.119030e-01, 3.214431e-10, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 2.220446e-16, 5.427035e-01, 2.220446e-16, 2.220446e-16, 2.220446e-16, 6.560886e-01, 4.377165e-01]]
-	skill_normalization = [32.971, 35.006, 44.13, 18.496, 28.937]
+	
+	#No longer used
+	#skill_normalization = [32.971, 35.006, 44.13, 18.496, 28.937]
+	#skill_normalization = [58.5755, 63.1307, 65.8634, 57.1935, 52.6067]
 
 	"""
 	skills =['Algorithms', 'Back-End Programming', 'Bayesian/Monte-Carlo Statistics',  'Big and Distributed Data',  'Business', 
@@ -63,10 +66,18 @@ def compute_results(session, DEBUG):
 
 	skill_score = matmult(nmf_rank_coefs, skill_rank_vec)
 
+	sum = 0
+	for num in skill_score:
+		sum += num
+
+	skill_norm = max([max(skill_score), 2*(sum/len(skill_score)) ])
+
+
 	loop_ndx=0;
 	
 	for i in skill_score:
-		skill_score[loop_ndx] = i/skill_normalization[loop_ndx]
+		#skill_score[loop_ndx] = i/skill_normalization[loop_ndx]
+		skill_score[loop_ndx] = i/skill_norm
 		loop_ndx += 1
 
 	skill_score_ndx_max = skill_score.index(max(skill_score))
