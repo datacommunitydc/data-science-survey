@@ -78,7 +78,7 @@
 
   var barWidth = 72;
   var width = (barWidth + 4) * data.length;
-  var height = 310;
+  var height = 350;
 
   var x = d3.scale.linear().domain([0, data.length]).range([0, width]);
   var y = d3.scale.linear().domain([0, 1 /*d3.max(data, function(datum) { return datum.value; }) */ ]).rangeRound([0, height]);
